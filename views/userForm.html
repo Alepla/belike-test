@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Site</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      padding-top: 50px;
+    }
+
+    #errorPasswdConf, #errorPasswd,#errorName {
+      color: red;
+    }
+    input[type=text] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type=submit] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <form action="/user/register" method="post">
+        <label for="name">Nombre de usuario:</label><br>
+        <input type="text" id="name" name="name" value="John"><br>
+        <p id="errorName"></p>
+        <label for="password">Contraseña:</label><br>
+        <input type="text" id="password" name="password" value="Doe"><br>
+        <p id="errorPasswd"></p>
+        <label for="passwordConf">Confirmar contraseña:</label><br>
+        <input type="text" id="passwordConf" name="passwordConf" value="Doe"><br><br>
+        <p id="errorPasswdConf"></p>
+        <input id="btn" type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("btn").disabled = true;
+    let name = document.getElementById("name");
+    let password = document.getElementById("password");
+    let passwordConf = document.getElementById("passwordConf");
+    const passwdRegEx = /^(?=.*?[A-Z])(?=.*?[#]).{7,}$/;
+    const nameRegEx = /^[0-9a-zA-Z]+$/;
+    name.addEventListener("input", () => {
+      checkBtn();
+      document.getElementById("errorName").innerHTML = '';
+      if (!new RegExp(nameRegEx).test(name.value)) {
+        document.getElementById("errorName").innerHTML = 'El nombre no puede llevar carácteres especiales';
+      }
+    });
+    password.addEventListener("input", () => {
+      checkBtn();
+      document.getElementById("errorPasswd").innerHTML = '';
+      document.getElementById("errorPasswdConf").innerHTML = '';
+      if (!new RegExp(passwdRegEx).test(password.value)) {
+        document.getElementById("errorPasswd").innerHTML = 'Mínimo 7 carácteres, un # y mayusculas';
+      }
+    });
+    passwordConf.addEventListener("input", () => {
+      checkBtn();
+      document.getElementById("errorPasswdConf").innerHTML = '';
+      if (password.value !== passwordConf.value) {
+        document.getElementById("errorPasswdConf").innerHTML = 'Las contraseñas no coinciden';
+      }
+    });
+
+    const checkBtn = () => {
+      if (new RegExp(nameRegEx).test(name.value) && new RegExp(passwdRegEx).test(password.value) && password.value === passwordConf.value) {
+        document.getElementById("btn").disabled = false;
+      } else {
+        document.getElementById("btn").disabled = true;
+      }
+    }
+  </script>
+</body>
+
+</html>
