@@ -8,7 +8,6 @@ class EncyptionController {
           console.log('Error hasheando:', err)
           reject(err)
         } else {
-          console.log('Y hasheada es: ' + passwd)
           resolve(passwd)
         }
       })
@@ -16,14 +15,12 @@ class EncyptionController {
   }
 
   public async decrypt (password: string, newPassword: string) {
-    console.log(newPassword)
     return new Promise((resolve, reject) => {
       bcrypt.compare(password, newPassword, (err, res) => {
         if (err) {
           console.log('Error comprobando:', err)
           reject(err)
         } else {
-          console.log(res)
           resolve(res)
         }
       })

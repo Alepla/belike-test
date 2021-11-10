@@ -10,7 +10,11 @@ router.get('/', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  userController.get(req, res)
+  if (req.body.name) {
+    userController.get(req, res)
+  } else {
+    res.status(400).send('Acceso denegado')
+  }
 })
 
 export default router
