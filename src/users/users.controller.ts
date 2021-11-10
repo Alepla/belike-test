@@ -13,7 +13,7 @@ class UsersController {
           if (error) {
             throw error
           }
-          res.send(template(name))
+          res.status(200).send(template(name))
         })
       })
     } catch (error) {
@@ -34,7 +34,7 @@ class UsersController {
         } else {
           encryptionController.decrypt(password, results.rows[0].password).then((data) => {
             if (data) {
-              res.send(template(name))
+              res.status(200).send(template(name))
             } else {
               res.status(400).send('Contraseñas incorrectas')
             }

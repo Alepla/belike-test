@@ -1,7 +1,9 @@
-// import UsersController from './users.controller'
+import UsersController from './users.controller'
 
-describe('auth', () => {
-  it('should resolve with true and valid userId for hardcoded token', async () => {
-    expect(true).toBe(true)
+const usersController = new UsersController()
+
+describe('users', () => {
+  it('Should be defined', () => {
+    expect(usersController).toBeDefined()
   })
 })
