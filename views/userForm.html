@@ -77,13 +77,12 @@
       if (!new RegExp(passwdRegEx).test(password.value)) {
         document.getElementById("errorPasswd").innerHTML = 'Mínimo 7 carácteres, un # y mayusculas';
       }
+      checkPasswd();
     });
     passwordConf.addEventListener("input", () => {
-      checkBtn();
       document.getElementById("errorPasswdConf").innerHTML = '';
-      if (password.value !== passwordConf.value) {
-        document.getElementById("errorPasswdConf").innerHTML = 'Las contraseñas no coinciden';
-      }
+      checkPasswd();
+      checkBtn();
     });
 
     const checkBtn = () => {
@@ -91,6 +90,12 @@
         document.getElementById("btn").disabled = false;
       } else {
         document.getElementById("btn").disabled = true;
+      }
+    }
+
+    const checkPasswd = () => {
+      if (password.value !== passwordConf.value) {
+        document.getElementById("errorPasswdConf").innerHTML = 'Las contraseñas no coinciden';
       }
     }
   </script>
