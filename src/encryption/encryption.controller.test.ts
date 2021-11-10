@@ -10,12 +10,10 @@ describe('encryption', () => {
   })
 
   it('Should return a hashed passwd', async () => {
-    expect(encryptionController.encrypt(password)).toEqual(expect.anything())
+    expect(await encryptionController.encrypt(password)).toEqual(expect.anything())
   })
 
   it('Should return true after compare', async () => {
-    encryptionController.decrypt(password, passwdHashed).then((res) => {
-      expect(res).toEqual(true)
-    })
+    expect(await encryptionController.decrypt(password, passwdHashed)).toEqual(true)
   })
 })
