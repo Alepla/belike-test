@@ -52,7 +52,7 @@ const template = (name: string) => {
       </div>
     </body>
   </html>
-  `;
-};
+  `
+}
 
-export default template;
+export default template
