@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
+  userController.get(req, res);
 });
 
 export default router;
